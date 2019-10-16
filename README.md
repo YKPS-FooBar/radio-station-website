@@ -8,7 +8,7 @@ Each week we get to decide the songs for next week, although data for previous w
 
 The current plan for next week is shown on the home page alone with some QR codes and plans for past weeks and other links. The current plan is normally not editable before paying.
 
-If you pay the money ¥5.00 through WeChat, you will be directed to a form where you have to put in your Student ID/Contact method, in case of songs of inappropriate length (>5 min, in which case it will be cut short), of inappropriate content (well, like swear words), or of other reasons. If any of those cases happen, then Peter (head of the radio station) will contact the student and try to moderate, which will not be our business.
+If you pay the money ¥5.00 through WeChat, you will be directed to a form where you have to put in your Student ID/Contact method, in case of songs of inappropriate length (>5 min, in which case it will be cut short), of inappropriate content (well, like swear words), or of other reasons. If any of those cases happens, then Peter (head of the radio station) will contact the student and try to moderate, which will not be our business.
 
 After filling out the form, we need to choose *one and only one* unoccupied cell to edit. Concurrent edits of a same cell should not happen. There should be autosaving for cell-editing in case the webpage is closed before clicking on a confirm/submit button.
 
