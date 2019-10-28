@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pay | Pao Radio Station</title>
+
+    <link rel="stylesheet" href="/static/vendors/bootstrap/bootstrap.min.css">
+  </head>
+  <body>
+    <main>
+      <div class="container-fluid">
+        <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <small class="text-muted">In order to contact you in case of unexpected problems, please fill out the form below.</small>
+            <form id="form" action="/pay" method="POST" novalidate>
+              <div class="form-group">
+                <label for="name">Please enter your student ID, or your name if you are a teacher.</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="s12345" autocomplete="off" required>
+                <small class="form-text text-muted">Your song preference will not be shared with 3rd-parties (TODO, or will it?).</small>
+              </div>
+              <div class="form-group">
+                <label for="email">Please enter your YKPS email. (TODO, Is this repetitive?)</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="s12345@ykpaoschool.cn" autocomplete="off" required pattern="[A-Za-z0-9\._-]+@(stu\.)?ykpaoschool\.cn">
+                <div class="invalid-feedback">Please provide your <i>school</i> email.</div>
+              </div>
+              <div class="form-group">
+                <label for="wechat">Please enter your WeChat ID. (TODO, Is this repetitive?)</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  </div>
+                  <input type="text" class="form-control" id="wechat" name="wechat" placeholder="WeChat ID" autocomplete="off" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Add a song for &yen;5</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/vendors/jquery/jquery.min.js"></script>
+    <script src="/static/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script>
+        function validate(event) {
+            if (!this.checkValidity()) {
+                $(this).addClass('was-validated');
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }
+
+        $('form#form').on('submit', validate);
+    </script>
+  </body>
+</html>
