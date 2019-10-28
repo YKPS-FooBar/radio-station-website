@@ -50,6 +50,7 @@ def add():
     name = request.form['name']
     email = request.form['email']
     wechat = request.form['wechat']
-    app.logger.info('Someone at the /add page.\n'
+    app.logger.info('Someone at the cell-editing page.\n'
                     f'\tname: {name}, email: {email}, wechat: {wechat}')
-    return render_template('add.html')
+    return render_template('add.html',
+                           name=name, email=email, wechat=wechat)

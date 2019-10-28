@@ -1,67 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "base.html" %}
 
-    <title>Pao Radio Station</title>
+{% block title %}{{ super() }}{% endblock %}
 
-    <link rel="stylesheet" href="/static/vendors/bootstrap/bootstrap.min.css">
-  </head>
-  <body>
-    <main>
-      <div class="container-fluid">
+{% block content %}
+  <div class="row pb-5 px-3">
 
-        <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
+    <div class="col-2 border-round">Fancy table of last week</div>
 
-        <div class="row pb-5 px-3">
+    <div class="col-lg-8 col-10">
+      <table class="table table-bordered table-striped shadow">
+        <thead>
+          <tr><th scope="col">Time Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
+        </thead>
+        <tbody>
+          <tr class="bg-dark text-white"><th scope="row">First of the Day</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
+          <tr><th scope="row">7:35</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">7:55</th><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <a href="/pay" class="btn btn-primary btn-lg btn-block">Add a song!</a>
+    </div>
 
-          <div class="col-2 border-round">Fancy table of last week</div>
-
-          <div class="col-lg-8 col-10">
-            <table class="table table-bordered table-striped shadow">
-              <thead>
-                <tr><th scope="col">Time Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
-              </thead>
-              <tbody>
-                <tr class="bg-dark text-white"><th scope="row">First of the Day</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
-                <tr><th scope="row">7:35</th><td></td><td></td><td></td><td></td></tr>
-                <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-                <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-                <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-                <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-                <tr><th scope="row">7:55</th><td></td><td></td><td></td><td></td></tr>
-              </tbody>
-            </table>
-            <a href="/pay" class="btn btn-primary btn-lg btn-block">Add a song!</a>
-          </div>
-
-          <div class="col-lg-2 col-12">
-            <div class="row">
-              <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="Make suggestions or simply come and talk!">
-                <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
-              </div>
-              <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="For special instructions such as ordering for an entire day">
-                <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
-              </div>
-              <div class="col-6 col-lg-12 px-0 card">
-                <div class="card-body">Other contacts</div>
-              </div>
-            </div>
-          </div>
-
+    <div class="col-lg-2 col-12">
+      <div class="row">
+        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="Make suggestions or simply come and talk!">
+          <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
         </div>
-
-        <p>Make YK Pao Great Again!</p>
-
+        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="For special instructions such as ordering for an entire day">
+          <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
+        </div>
+        <div class="col-6 col-lg-12 px-0 card">
+          <div class="card-body">Other contacts</div>
+        </div>
       </div>
-    </main>
+    </div>
 
-    <script src="/static/vendors/jquery/jquery.min.js"></script>
-    <script src="/static/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-    <script>
+  </div>
+
+  <p>Make YK Pao Great Again!</p>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
       $('[data-toggle="tooltip"]').tooltip()
-    </script>
-  </body>
-</html>
+  </script>
+{% endblock %}

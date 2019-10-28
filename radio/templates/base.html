@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <title>{% block title %}Pao Radio Station{% endblock %}</title>
+
+      <link rel="stylesheet" href="/static/vendors/bootstrap/bootstrap.min.css">
+    {% endblock %}
+  </head>
+  <body>
+    <main>
+      <div class="container-fluid">
+
+        {% block header %}
+          {# Consider a navbar? #}
+          <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+      </div>
+    </main>
+
+    {% block footer %}{# Consider a footer? #}{% endblock %}
+
+    {% block scripts %}
+      <script src="/static/vendors/jquery/jquery.min.js"></script>
+      <script src="/static/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+
+  </body>
+</html>

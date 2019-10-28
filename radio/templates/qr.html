@@ -1,38 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "base.html" %}
 
-    <title>Pay | Pao Radio Station</title>
+{% block title %}Pay | {{ super() }}{% endblock %}
 
-    <link rel="stylesheet" href="/static/vendors/bootstrap/bootstrap.min.css">
-  </head>
-  <body>
-    <main>
-      <div class="container-fluid">
-        <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
-        <div class="row justify-content-center">
-          <div class="col-6 col-lg-3 px-0 card" data-toggle="tooltip" data-placement="left" title="Scan to pay using WeChat">
-            <img class="card-img-top img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
-            <div class="card-body text-center">
-              <h5 class="card-title">&yen;5</h5>
-              <p class="card-text">Scan the QR code above to pay to add your song!</p>
-              <form action="/add" method="POST">
-                <!-- TODO, see the TODO of the corresponding Python logic -->
-                <input type="hidden" name="name" value="{{ name | urlencode }}">
-                <input type="hidden" name="email" value="{{ email | urlencode }}">
-                <input type="hidden" name="wechat" value="{{ wechat | urlencode }}">
-                <button type="submit" class="btn btn-primary">For testing: let's just pretend you've paid</button>
-              </form>
-            </div>
-          </div>
-        </div>
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-6 col-lg-3 px-0 card" data-toggle="tooltip" data-placement="left" title="Scan to pay using WeChat">
+      <img class="card-img-top img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
+      <div class="card-body text-center">
+        <h5 class="card-title">&yen;5</h5>
+        <p class="card-text">Scan the QR code above to pay to add your song!</p>
+        <form action="/add" method="POST">
+          <!-- TODO, see the TODO of the corresponding Python logic -->
+          <input type="hidden" name="name" value="{{ name | urlencode }}">
+          <input type="hidden" name="email" value="{{ email | urlencode }}">
+          <input type="hidden" name="wechat" value="{{ wechat | urlencode }}">
+          <button type="submit" class="btn btn-primary">For testing: let's just pretend you've paid</button>
+        </form>
       </div>
-    </main>
-
-    <script src="/static/vendors/jquery/jquery.min.js"></script>
-    <script src="/static/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    </div>
+  </div>
+{% endblock %}
