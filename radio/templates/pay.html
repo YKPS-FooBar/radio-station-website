@@ -19,12 +19,12 @@
             <form id="form" action="/pay" method="POST" novalidate>
               <div class="form-group">
                 <label for="name">Please enter your student ID, or your name if you are a teacher.</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="s12345" autocomplete="off" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="s12345" autocomplete="off" required pattern=".*[^\s].*">
                 <small class="form-text text-muted">Your song preference will not be shared with 3rd-parties (TODO, or will it?).</small>
               </div>
               <div class="form-group">
                 <label for="email">Please enter your YKPS email. (TODO, Is this repetitive?)</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="s12345@ykpaoschool.cn" autocomplete="off" required pattern="[A-Za-z0-9\._-]+@(stu\.)?ykpaoschool\.cn">
+                <input type="text" class="form-control" id="email" name="email" placeholder="s12345@ykpaoschool.cn" autocomplete="off" required pattern="\s*[A-Za-z0-9\._-]+@(stu\.)?ykpaoschool\.cn\s*">
                 <div class="invalid-feedback">Please provide your <i>school</i> email.</div>
               </div>
               <div class="form-group">
@@ -33,7 +33,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                   </div>
-                  <input type="text" class="form-control" id="wechat" name="wechat" placeholder="WeChat ID" autocomplete="off" required>
+                  <input type="text" class="form-control" id="wechat" name="wechat" placeholder="WeChat ID" autocomplete="off" required pattern=".*[^\s].*">
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Add a song for &yen;5</button>
