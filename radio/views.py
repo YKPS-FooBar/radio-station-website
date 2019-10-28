@@ -24,10 +24,11 @@ def pay():
         # implement an identical server-side validation.  If server-side fails,
         # we return a 400 bad request.
 
-        app.logger.info('Someone is here at the QR code.')
         name = request.form['name'].strip()
         email = request.form['email'].strip()
         wechat = request.form['wechat'].strip()
+        app.logger.info('Someone is here attempting to access the QR code.\n'
+                        f'\tname: {name}, email: {email}, wechat: {wechat}')
 
         # Simple validation on if the email is of ykpaoschool.cn domain.
         ykps_email = re.fullmatch(r'[A-Za-z0-9\._-]+@(stu\.)?ykpaoschool\.cn',
