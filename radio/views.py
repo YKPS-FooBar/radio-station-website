@@ -13,18 +13,17 @@ def index():
     return render_template('index.html')
 
 
-# So, generally, for speed there is a client-side validation, but for
-# safety (i.e. people like David modifying the source code) we also
-# implement an identical server-side validation.  If server-side fails,
-# we return a 400 bad request.
-
-
 @app.route('/pay', methods=('GET', 'POST'))
 def pay():
     if request.method == 'GET':
         app.logger.info('Someone at entering their information and paying.')
-        return render_template('pay.html', script='')
+        return render_template('pay.html')
     else:
+        # So, generally, for speed there is a client-side validation, but for
+        # safety (i.e. people like David modifying the source code) we also
+        # implement an identical server-side validation.  If server-side fails,
+        # we return a 400 bad request.
+
         app.logger.info('Someone is here at the QR code.')
         name = request.form['name'].strip()
         email = request.form['email'].strip()
