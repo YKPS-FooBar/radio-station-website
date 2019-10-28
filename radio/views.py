@@ -5,9 +5,6 @@ from flask import render_template, request, abort
 from radio import app
 
 
-# TODO, try to hunt down who "someone" is in the logs.
-
-
 @app.route('/', methods=('GET',))
 def index():
     return render_template('index.html')
@@ -50,5 +47,9 @@ def pay():
 
 @app.route('/add', methods=('POST',))
 def add():
-    app.logger.info('Someone at the /add page.')
+    name = request.form['name']
+    email = request.form['email']
+    wechat = request.form['wechat']
+    app.logger.info('Someone at the /add page.\n'
+                    f'\tname: {name}, email: {email}, wechat: {wechat}')
     return render_template('add.html')
