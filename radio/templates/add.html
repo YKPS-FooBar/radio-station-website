@@ -2,6 +2,15 @@
 
 {% block title %}Add a song | {{ super() }}{% endblock %}
 
+{% block head %}
+  {{ super() }}
+  <style>
+      table#timetable > tbody > tr > :not(:empty) {
+          background-color: #f8f9fa;
+      }
+  </style>
+{% endblock %}
+
 {% block content %}
   <div class="row pb-5 px-3">
 
@@ -9,18 +18,18 @@
 
     <div class="col-lg-8 col-10">
       <div class="alert alert-primary">You may click on a cell to enter the song name.</div>
-      <table class="table table-bordered table-striped shadow">
-        <thead>
-          <tr><th scope="col">Time Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
+      <table id="timetable" class="table table-bordered shadow">
+        <thead class="thead-dark">
+          <tr><th scope="col">Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
         </thead>
         <tbody>
-          <tr class="bg-dark text-white"><th scope="row">First of the Day</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
-          <tr><th scope="row">7:35</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row"><span class="invisible">7:35</span></th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">7:55</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">1</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
+          <tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">3</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">4</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">5</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">6</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">7</th><td></td><td></td><td></td><td></td></tr>
         </tbody>
       </table>
     </div>
