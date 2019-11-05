@@ -11,9 +11,9 @@
         <p class="card-text">Scan the QR code above to pay to add your song!</p>
         <form action="/add" method="POST">
           <!-- TODO, see the TODO of the corresponding Python logic -->
-          <input type="hidden" name="name" value="{{ name | urlencode }}">
-          <input type="hidden" name="email" value="{{ email | urlencode }}">
-          <input type="hidden" name="wechat" value="{{ wechat | urlencode }}">
+          <input type="hidden" name="name" value="{{ name }}">
+          <input type="hidden" name="email" value="{{ email }}">
+          <input type="hidden" name="wechat" value="{{ wechat }}">
           <button type="submit" class="btn btn-primary">For testing: let's just pretend you've paid</button>
         </form>
       </div>

@@ -9,11 +9,23 @@
           background-color: #f8f9fa;
       }
 
-      table#timetable > tbody > tr > :empty {
-          transition: box-shadow 0.2s ease;
+      table#timetable > tbody > tr > .selected {
+          padding: 0;
       }
 
-      table#timetable > tbody > tr > :empty:hover {
+      table#timetable > tbody > tr > .selected > input {
+          border-radius: 0;
+          height: 3rem;
+          background-color: #ebf5ff;
+          color: black;
+      }
+
+      table#timetable > tbody > tr > .unclicked:empty {
+          transition: box-shadow 0.2s ease;
+          cursor: text;
+      }
+
+      table#timetable > tbody > tr > .unclicked:empty:hover {
           box-shadow: 0 0 20px 1px #c0c0c0;
       }
   </style>
@@ -26,21 +38,60 @@
 
     <div class="col-lg-8 col-10">
       <div class="alert alert-primary">You may click on a cell to enter the song name.</div>
-      <table id="timetable" class="table table-bordered shadow">
-        <thead class="thead-dark">
-          <tr><th scope="col">Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">1</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
-          <tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">3</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">4</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">5</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">6</th><td></td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">7</th><td></td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
+      <form id="form" action="/submit" method="POST" novalidate>
+        <table id="timetable" class="table table-bordered shadow">
+          <thead class="thead-dark">
+            <tr><th scope="col">Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">1</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
+            <tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">3</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">4</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">5</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">6</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">7</th><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <!-- TODO, see the TODO of the corresponding Python logic -->
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="wechat" value="{{ wechat }}">
+        <button id="submit" type="submit" class="btn btn-primary btn-lg btn-block" disabled>Submit this song!</button>
+      </form>
     </div>
 
   </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    var $submit = $('#submit');
+
+    function click() {
+        $tds.off('click').removeClass('unclicked');
+        $submit.removeAttr('disabled');
+        var $td = $(this).addClass('selected');
+        $(`<input id="song" type="text" class="form-control" name="${$tds.index($td)}" required pattern=".*[^\\s].*" autocomplete="off">`).appendTo($td).focus().on('change keyup copy paste cut blur', () => {
+            if (!$('input#song').val()) {
+                $tds.click(click).addClass('unclicked');
+                $submit.attr('disabled', '');
+                $('input#song').detach();
+            }
+        });
+    }
+
+    $tds = $('table#timetable > tbody > tr > :empty').addClass('unclicked');
+    $tds.click(click);
+
+    function validate(event) {
+        if (!this.checkValidity()) {
+            $(this).addClass('was-validated');
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    }
+    $('form#form').on('submit', validate);
+  </script>
 {% endblock %}
