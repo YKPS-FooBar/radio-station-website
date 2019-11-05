@@ -8,6 +8,14 @@
       table#timetable > tbody > tr > :not(:empty) {
           background-color: #f8f9fa;
       }
+
+      table#timetable > tbody > tr > :empty {
+          transition: box-shadow 0.2s ease;
+      }
+
+      table#timetable > tbody > tr > :empty:hover {
+          box-shadow: 0 0 20px 1px #c0c0c0;
+      }
   </style>
 {% endblock %}
 
