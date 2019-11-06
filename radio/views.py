@@ -1,6 +1,6 @@
 import re
 
-from flask import render_template, request, abort
+from flask import render_template, request, abort, redirect
 
 from radio import app
 
@@ -87,8 +87,9 @@ def submit():
 
     slot, song_name = next(iter(form.items()))
 
-    if not slot or not song_name:
+    if not re.fullmatch(r'[0-9]+', slot) or not song_name:
         return abort(400)
 
-    app.logger.info(f'A person added {slot} {song_name}')
-    return 'added. <a href="/">/</a>'
+    app.logger.info(f'Someone added {song_name!r} at slot {slot}.\n'
+                    f'\tname: {name}, email: {email}, wechat: {wechat}')
+    return redirect('/')
