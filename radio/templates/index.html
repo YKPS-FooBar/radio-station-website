@@ -19,11 +19,11 @@
     <div class="col-lg-8 col-10">
       <table id="timetable" class="table table-bordered shadow">
         <thead class="thead-dark">
-          {# TODO, display Day A/B/C/D/E/F on the heading, e.g. "Tuesday (C)" #}
+          {# TODO: display Day A/B/C/D/E/F on the heading, e.g. "Tuesday (C)" #}
           <tr><th scope="col">Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
         </thead>
         <tbody>
-          <tr><th class="bg-light" scope="row">1</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
+          <tr><th class="bg-light" scope="row">1</th><td></td><td></td><td></td><td></td></tr>
           <tr><th class="bg-light" scope="row">2</th><td></td><td></td><td></td><td></td></tr>
           <tr><th class="bg-light" scope="row">3</th><td></td><td></td><td></td><td></td></tr>
           <tr><th class="bg-light" scope="row">4</th><td></td><td></td><td></td><td></td></tr>
@@ -37,26 +37,34 @@
 
     <div class="col-lg-2 col-12">
       <div class="row">
-        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="Make suggestions or simply come and talk!">
-          <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
+        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="Pay without adding a new song">
+          <img class="card-image img-thumbnail" src="/static/images/pay-qr-code.jpeg" alt="QR Code">
         </div>
-        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="For special instructions such as ordering for an entire day">
-          <img class="card-image img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
+        <div class="col-3 col-lg-12 px-0 card" data-toggle="tooltip" data-placement="left" title="Make suggestions, complaints, or special instructions such as ordering for an entire day">
+          <img class="card-image img-thumbnail" src="/static/images/special-instructions.jpeg" alt="QR Code">
         </div>
         <div class="col-6 col-lg-12 px-0 card">
-          <div class="card-body">Other contacts</div>
+          <div class="card-body">
+            <h5 class="card-title">Other contacts</h5>
+            <p class="card-text small mb-2">WeChat: Admiral_Horthy</p>
+            <p class="card-text small mb-2">Email: s17501@ykpaoschool.cn</p>
+            <p class="card-text small mb-2">Club (CCA1): Mon/Wed at S302, Tue/Thur at WeStudio</p>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
-
-  <p>Make YK Pao Great Again!</p>
 {% endblock %}
 
 {% block scripts %}
   {{ super() }}
   <script>
-      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-toggle="tooltip"]').tooltip();
+
+      let songNames = {{ song_names | safe }};
+      $('table#timetable > tbody > tr > td').each((index, td) => {
+          td.innerHTML = songNames[index];
+      });
   </script>
 {% endblock %}

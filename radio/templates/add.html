@@ -44,7 +44,7 @@
             <tr><th scope="col">Slot</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">1</th><td>Время, вперед!</td><td>Time, Forward!</td><td>时代，前进!</td><td>Official Intro</td></tr>
+            <tr><th scope="row">1</th><td></td><td></td><td></td><td></td></tr>
             <tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
             <tr><th scope="row">3</th><td></td><td></td><td></td><td></td></tr>
             <tr><th scope="row">4</th><td></td><td></td><td></td><td></td></tr>
@@ -67,31 +67,36 @@
 {% block scripts %}
   {{ super() }}
   <script>
-    var $submit = $('#submit');
+      let $submit = $('#submit');
 
-    function click() {
-        $tds.off('click').removeClass('unclicked');
-        $submit.removeAttr('disabled');
-        var $td = $(this).addClass('selected');
-        $(`<input id="song" type="text" class="form-control" name="${$tds.index($td)}" required pattern=".*[^\\s].*" autocomplete="off">`).appendTo($td).focus().on('change keyup copy paste cut blur', () => {
-            if (!$('input#song').val()) {
-                $tds.click(click).addClass('unclicked');
-                $submit.attr('disabled', '');
-                $('input#song').detach();
-            }
-        });
-    }
+      function click() {
+          $tds.off('click').removeClass('unclicked');
+          $submit.removeAttr('disabled');
+          let $td = $(this).addClass('selected');
+          $(`<input id="song" type="text" class="form-control" name="${$tds.index($td)}" required pattern=".*[^\\s].*" autocomplete="off">`).appendTo($td).focus().on('change keyup copy paste cut blur', () => {
+              if (!$('input#song').val()) {
+                  $tds.click(click).addClass('unclicked');
+                  $submit.attr('disabled', '');
+                  $('input#song').detach();
+              }
+          });
+      }
 
-    $tds = $('table#timetable > tbody > tr > :empty').addClass('unclicked');
-    $tds.click(click);
+      $tds = $('table#timetable > tbody > tr > :empty').addClass('unclicked');
+      $tds.click(click);
 
-    function validate(event) {
-        if (!this.checkValidity()) {
-            $(this).addClass('was-validated');
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    }
-    $('form#form').on('submit', validate);
+      function validate(event) {
+          if (!this.checkValidity()) {
+              $(this).addClass('was-validated');
+              event.preventDefault();
+              event.stopPropagation();
+          }
+      }
+      $('form#form').on('submit', validate);
+
+      let songNames = {{ song_names | safe }};
+      $('table#timetable > tbody > tr > td').each((index, td) => {
+          td.innerHTML = songNames[index];
+      });
   </script>
 {% endblock %}

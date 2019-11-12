@@ -1,8 +1,25 @@
+import json
+import os
 import re
 
 from flask import render_template, request, abort, redirect
 
 from radio import app
+
+
+# TODO: SQL
+NUM_SLOTS = 4 * 7
+if os.path.isfile('songs.json'):
+    with open('songs.json', 'r') as file:
+        songs = json.load(file)
+else:
+    songs = [None] * NUM_SLOTS
+
+
+def song_names():
+    print([song['song'] if song is not None else '' for song in songs])
+    return json.dumps([song['song'] if song is not None else ''
+                       for song in songs])
 
 
 def validate(with_song=False):
@@ -38,14 +55,18 @@ def validate(with_song=False):
         if not re.fullmatch(r'[0-9]+', slot) or not song:
             abort(400)
 
+        slot = int(slot)
+        if slot not in range(NUM_SLOTS):
+            abort(400)
+
         return name, email, wechat, slot, song
     else:
         return name, email, wechat
 
 
-@app.route('/', methods=('GET',))
+@app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', song_names=song_names())
 
 
 @app.route('/pay', methods=('GET', 'POST'))
@@ -73,7 +94,8 @@ def add():
     app.logger.info('Someone at the cell-editing page.\n'
                     f'\tname: {name}, email: {email}, wechat: {wechat}')
     return render_template('add.html',
-                           name=name, email=email, wechat=wechat)
+                           name=name, email=email, wechat=wechat,
+                           song_names=song_names())
 
 
 @app.route('/submit', methods=('POST',))
@@ -81,4 +103,19 @@ def submit():
     name, email, wechat, slot, song = validate(with_song=True)
     app.logger.info(f'Someone added {song!r} at slot {slot}.\n'
                     f'\tname: {name}, email: {email}, wechat: {wechat}')
+
+    # TODO: use SQL
+    if songs[slot] is not None:
+        abort(400)
+    songs[slot] = {'name': name, 'email': email,
+                   'wechat': wechat, 'song': song}
+    with open('songs.json', 'w') as file:
+        json.dump(songs, file)
+
     return redirect('/')
+
+
+@app.route('/admin')
+def admin():
+    """This is an admin portal to manage & edit all the songs."""
+    return 'TODO: implement admin with verification.'

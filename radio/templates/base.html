@@ -12,18 +12,17 @@
     {% endblock %}
   </head>
   <body class="d-flex flex-column h-100">
+
+    {% block header %}
+      <header>
+        {# Consider a navbar? #}
+        <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
+      </header>
+    {% endblock %}
+
     <main>
       <div class="container-fluid">
-
-        {% block header %}
-          <header>
-            {# Consider a navbar? #}
-            <h1 class="text-center pt-3 pb-5">Pao Radio Station</h1>
-          </header>
-        {% endblock %}
-
         {% block content %}{% endblock %}
-
       </div>
     </main>
 

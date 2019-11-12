@@ -5,16 +5,16 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-6 col-lg-3 px-0 card" data-toggle="tooltip" data-placement="left" title="Scan to pay using WeChat">
-      <img class="card-img-top img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code">
+      <img class="card-img-top img-thumbnail" src="/static/images/pay-qr-code.jpeg" alt="QR Code">
       <div class="card-body text-center">
-        <h5 class="card-title">&yen;5</h5>
-        <p class="card-text">Scan the QR code above to pay to add your song!</p>
+        <h5 class="card-title">&yen;5.00</h5>
+        <p class="card-text">Scan the QR code above to pay before you add your song.</p>
         <form action="/add" method="POST">
           <!-- Don't worry, Jinja does the escaping for us. -->
           <input type="hidden" name="name" value="{{ name }}">
           <input type="hidden" name="email" value="{{ email }}">
           <input type="hidden" name="wechat" value="{{ wechat }}">
-          <button type="submit" class="btn btn-primary">For testing: let's just pretend you've paid</button>
+          <button type="submit" class="btn btn-primary">I have paid! Continue &rarr;</button>
         </form>
       </div>
     </div>
