@@ -10,7 +10,7 @@
         <h5 class="card-title">&yen;5</h5>
         <p class="card-text">Scan the QR code above to pay to add your song!</p>
         <form action="/add" method="POST">
-          <!-- TODO, see the TODO of the corresponding Python logic -->
+          <!-- Don't worry, Jinja does the escaping for us. -->
           <input type="hidden" name="name" value="{{ name }}">
           <input type="hidden" name="email" value="{{ email }}">
           <input type="hidden" name="wechat" value="{{ wechat }}">

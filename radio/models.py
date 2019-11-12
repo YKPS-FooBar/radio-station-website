@@ -7,13 +7,13 @@ class Song(db.Model):
     __tablename__ = 'songs'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    start_time = db.Column(db.DateTime, nullable=False)
+    song = db.Column(db.String(80), nullable=False)
+    slot = db.Column(db.DateTime, nullable=False)
     file_name = db.Column(db.String(80), nullable=True)
 
-    def __init__(self, name, start_time, file_name=None):
-        self.name = name
-        self.start_time = start_time
+    def __init__(self, song, slot, file_name=None):
+        self.song = song
+        self.slot = slot
         self.file_name = file_name
 
 
